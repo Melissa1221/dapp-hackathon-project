@@ -3,13 +3,19 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
 import { useState } from "react";
+import { useNavigate } from "@remix-run/react";
 
 export default function NewContract() {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
+  const navigate = useNavigate();
 
   const handleWalletConnection = () => {
-    // Here you would implement the actual wallet connection logic
     setIsWalletConnected(true);
+  };
+
+  const handleGenerate = () => {
+    const contractHash = "sgdfhtfgjgfjyf";
+    navigate(`/home/success/${contractHash}`);
   };
 
   return (
@@ -58,7 +64,7 @@ export default function NewContract() {
           )}
           <div className="flex justify-end">
             {isWalletConnected ? (
-              <Button>
+              <Button onClick={handleGenerate}>
                 Generate
               </Button>
             ) : (
